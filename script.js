@@ -1,11 +1,12 @@
 //DEPENDENCIES
-var timerEl = document.getElementById('timer');
-var startButtonEl = document.getElementById("start-quiz");
+var startContainer = document.getElementById('start-container');
+var quizContainer = document.getElementById('quiz-container');
+// var timerEl = document.getElementById('timer');
+var startButtonEl = document.getElementById("start-button");
 var questionEl = document.getElementById('question');
 var answerOptionsEl = document.getElementById('answer-options');
 var submitButtonEl = document.getElementById('submit-answer');
 var resultEl = document.getElementById('result');
-
 
 //DATA
 var questions = [
@@ -16,33 +17,33 @@ var questions = [
 var currentQuestionIndex = 0;
 var score = 0;
 
-
 //FUNCTIONS
 function init() {
+  startQuiz();
+  
+  
+};
+ 
+function startQuiz() {
+  console.log('Start Quiz button clicked');
+  startContainer.style.display = 'none';
+  quizContainer.style.display = 'block';
   displayQuestion();
   
 };
 
-
-function timerFunction() {
-  var secondsRemaining = 10;
-  var timer = setInterval(function() {
-    if (secondsRemaining <= 0) {
-      clearInterval(timer);
-      timerEl.textContent = "Time's up!";
-      } else {
-      timerEl.textContent = secondsRemaining + ' seconds remaining';
-      secondsRemaining--;
-      }
-    }, 1000);
-  };
-
-
-function startButtonFunction() {
-  console.log('Start Quiz button clicked');
-  timerFunction();
-};
-
+// function timerFunction() {
+//   var secondsRemaining = 10;
+//   var timer = setInterval(function() {
+//     if (secondsRemaining <= 0) {
+//       clearInterval(timer);
+//       timerEl.textContent = "Time's up!";
+//       } else {
+//       timerEl.textContent = secondsRemaining + ' seconds remaining';
+//       secondsRemaining--;
+//       }
+//     }, 1000);
+// };
 
 
 function displayQuestion() {
@@ -54,10 +55,8 @@ function displayQuestion() {
             liEl.textContent = answer;
             liEl.addEventListener('click', selectAnswer);
             answerOptionsEl.appendChild(liEl);
-
     });
 };
-
 
 function selectAnswer(event) {
   var selectedAnswer = event.target.textContent;
@@ -76,7 +75,6 @@ function selectAnswer(event) {
   }
 };
 
-
 function showResults() {
   questionEl.style.display = 'none';
   answerOptionsEl.style.display = 'none';
@@ -84,12 +82,9 @@ function showResults() {
   resultEl.textContent = "Your score: " + score + "/" + questions.length
 }
 
-
 //USER INTERACTION
-startButtonEl.addEventListener('click', startButtonFunction);
+ startButtonEl.addEventListener('click', startQuiz);
 submitButtonEl.addEventListener('click', selectAnswer);
-
-
 
 //INITIALIZATION
 init();
