@@ -1,6 +1,6 @@
 ////DEPENDENCIES
-var startContainer = document.getElementById('start-container');
-var quizContainer = document.getElementById('quiz-container');
+var startContainerEl = document.getElementById('start-container');
+var quizContainerEl = document.getElementById('quiz-container');
 var timerEl = document.getElementById('timer');
 var startButtonEl = document.getElementById("start-button");
 var questionEl = document.getElementById('question');
@@ -15,39 +15,40 @@ var questionsObj = [
   { question: "Who wrote Hamlet?", answers: ["Shakespeare", "Dickens", "Chaucer"], correct: "Shakespeare" }
 ];
 var currentQuestionIndexVar = 0;
-var score = 0;
+var scoreVar = 0;
+var timerVar;
 
 ////FUNCTIONS
 function initFunc() { //clicking the start button starts the startQuiz function.
-  startButtonEl.addEventListener('click', startQuiz);  //clicking startButtonEl starts starQuiz function.
+  startButtonEl.addEventListener('click', startQuizFunc);  //clicking startButtonEl starts starQuiz function.
 };
  
-function startQuiz() {  //once startButtonEl inside init() is clicked...
+function startQuizFunc() {  //once startButtonEl inside init() is clicked...
   console.log('Start Quiz button clicked');  //it tests if startButtonEl works, then...
-  startContainer.style.display = 'none';  //start-container div gets cleared...
-  quizContainer.style.display = 'block';  //quiz-container div begins...
-  timerFunction();  // and the timer starts in the backgroud...
-  displayQuestion();  // along with the displaying of questions.
+  startContainerEl.style.display = 'none';  //start-container div gets cleared...
+  quizContainerEl.style.display = 'block';  //quiz-container div begins...
+  timerFunc();  // and the timer starts in the backgroud...
+  displayQuestionFunc();  // along with the displaying of questions.
   
 };
 
-function timerFunction() {  //this timer is called inside startQuiz...
-  var secondsRemaining = 10;
-  var timer = setInterval(function() {
-    if (secondsRemaining <= 0) {
-      clearInterval(timer);
+function timerFunc() {  //this timer is called inside startQuiz function...
+  var secondsRemainingVar = 10;
+      timerVar = setInterval(function() {
+    if (secondsRemainingVar <= 0) {
+      clearInterval(timerVar);
       timerEl.textContent = "Time's up!";
       } else {
-      timerEl.textContent = secondsRemaining + ' seconds remaining';
-      secondsRemaining--;
+      timerEl.textContent = secondsRemainingVar + ' seconds remaining';
+      secondsRemainingVar--;
       }
     }, 1000);
 };
 
-function displayQuestion() {  //this displays the questions
+function displayQuestionFunc() {  //this displays the questions
   if (currentQuestion >= questionsObj.length) {
-      clearInterval(timerEl);
-      showResults();
+      clearInterval(timerVar);
+      showResultsFunc();
       return;
   }
   var currentQuestion = questionsObj[currentQuestionIndexVar]
@@ -72,25 +73,25 @@ function selectAnswer(event) {  //this handles the logic when the user selects a
   var correctAnswer = questionsObj[currentQuestionIndexVar].correct;  //gets the correct answer for the current question,
 
   if (selectedAnswer === correctAnswer) {
-    score++;
+    scoreVar++;
     var pEl = document.createElement('p');
 
   }
   currentQuestionIndexVar++;
   if (currentQuestionIndexVar < questionsObj.length) {
-    displayQuestion();
+    displayQuestionFunc();
   }
   else {
-    showResults();
+    showResultsFunc();
   }
 };
 
-function showResults() {
-  clearInterval(timerEl);
+function showResultsFunc() {
+  clearInterval(timerVar);
   questionEl.style.display = 'none';
   answerOptionsEl.style.display = 'none';
   submitButtonEl.style.display = 'none';
-  resultEl.textContent = "Your score: " + score + "/" + questionsObj.length
+  resultEl.textContent = "Your score: " + scoreVar + "/" + questionsObj.length
 }
 
 ////USER INTERACTION
