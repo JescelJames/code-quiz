@@ -9,20 +9,20 @@ var submitButtonEl = document.getElementById('submit-answer');
 var resultEl = document.getElementById('result');
 
 ////DATA
-var questions = [
+var questionsObj = [
   { question: "What is 2 + 2?", answers: ["3", "4", "5"], correct: "4" },
   { question: "What is the capital of France?", answers: ["Paris", "London", "Rome"], correct: "Paris" },
   { question: "Who wrote Hamlet?", answers: ["Shakespeare", "Dickens", "Chaucer"], correct: "Shakespeare" }
 ];
-var currentQuestionIndex = 0;
+var currentQuestionIndexVar = 0;
 var score = 0;
 
-///FUNCTIONS
-function init() { //clicking the start button starts the startQuiz function.
+////FUNCTIONS
+function initFunc() { //clicking the start button starts the startQuiz function.
   startButtonEl.addEventListener('click', startQuiz);  //clicking startButtonEl starts starQuiz function.
 };
  
-function startQuiz() {  //once startButtonEl nested in init() is clicked...
+function startQuiz() {  //once startButtonEl inside init() is clicked...
   console.log('Start Quiz button clicked');  //it tests if startButtonEl works, then...
   startContainer.style.display = 'none';  //start-container div gets cleared...
   quizContainer.style.display = 'block';  //quiz-container div begins...
@@ -31,7 +31,7 @@ function startQuiz() {  //once startButtonEl nested in init() is clicked...
   
 };
 
-function timerFunction() {  //this timer is called and nested inside startQuiz...
+function timerFunction() {  //this timer is called inside startQuiz...
   var secondsRemaining = 10;
   var timer = setInterval(function() {
     if (secondsRemaining <= 0) {
@@ -44,38 +44,44 @@ function timerFunction() {  //this timer is called and nested inside startQuiz..
     }, 1000);
 };
 
-function displayQuestion() {
-  if (currentQuestion >= questions.length) {
+function displayQuestion() {  //this displays the questions
+  if (currentQuestion >= questionsObj.length) {
       clearInterval(timerEl);
       showResults();
       return;
   }
-  var currentQuestion = questions[currentQuestionIndex]
+  var currentQuestion = questionsObj[currentQuestionIndexVar]
       questionEl.textContent = currentQuestion.question;
       answerOptionsEl.innerHTML = '';
+
       currentQuestion.answers.forEach(function(answer) {
         var liEl = document.createElement('li');
             liEl.textContent = answer;
-            liEl.addEventListener('click', selectAnswer);
+            liEl.addEventListener('click', selectAnswer);  //when an answer is clicked
             answerOptionsEl.appendChild(liEl);
         });
       
 };
 
-function selectAnswer(event) {
-  var selectedAnswer = event.target.textContent;
-  var correctAnswer = questions[currentQuestionIndex].correct;
+function selectAnswer(event) {  //this handles the logic when the user selects an answer. 
+                                //the event parameter is triggered when user clicks on of the answer options.
+
+  var selectedAnswer = event.target.textContent;  //extracts the text content of the HTML element the user clicks
+                                                  //and stores it in a variable. 
+
+  var correctAnswer = questionsObj[currentQuestionIndexVar].correct;  //gets the correct answer for the current question,
 
   if (selectedAnswer === correctAnswer) {
     score++;
+    var pEl = document.createElement('p');
+
   }
-  currentQuestionIndex++;
-  if (currentQuestionIndex < questions.length) {
+  currentQuestionIndexVar++;
+  if (currentQuestionIndexVar < questionsObj.length) {
     displayQuestion();
   }
   else {
     showResults();
-
   }
 };
 
@@ -84,11 +90,11 @@ function showResults() {
   questionEl.style.display = 'none';
   answerOptionsEl.style.display = 'none';
   submitButtonEl.style.display = 'none';
-  resultEl.textContent = "Your score: " + score + "/" + questions.length
+  resultEl.textContent = "Your score: " + score + "/" + questionsObj.length
 }
 
 ////USER INTERACTION
 
 
 ////INITIALIZATION
-init();
+initFunc();
