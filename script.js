@@ -19,6 +19,7 @@ var score = 0;
 
 //FUNCTIONS
 function init() {
+  displayQuestion();
   
 };
 
@@ -43,29 +44,50 @@ function startButtonFunction() {
 };
 
 
-function submitButtonFunction() {
-  // Code for what happens when submit is clicked
-  console.log('Submit button clicked');
-  
-};
-
 
 function displayQuestion() {
   var currentQuestion = questions[currentQuestionIndex]
+      questionEl.textContent = currentQuestion.question;
+      answerOptionsEl.innerHTML = '';
+      currentQuestion.answers.forEach(function(answer) {
+        var liEl = document.createElement('li');
+            liEl.textContent = answer;
+            liEl.addEventListener('click', selectAnswer);
+            answerOptionsEl.appendChild(liEl);
 
-    questionEl.textContent = currentQuestion.question;
-    answerOptionsEl.innerHTML = '';
-    // currentQuestion.answers.forEach
-
-
-
-
+    });
 };
+
+
+function selectAnswer(event) {
+  var selectedAnswer = event.target.textContent;
+  var correctAnswer = questions[currentQuestionIndex].correct;
+
+  if (selectedAnswer === correctAnswer) {
+    score++;
+  }
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    displayQuestion();
+  }
+  else {
+    showResults();
+
+  }
+};
+
+
+function showResults() {
+  questionEl.style.display = 'none';
+  answerOptionsEl.style.display = 'none';
+  submitButtonEl.style.display = 'none';
+  resultEl.textContent = "Your score: " + score + "/" + questions.length
+}
 
 
 //USER INTERACTION
 startButtonEl.addEventListener('click', startButtonFunction);
-submitButtonEl.addEventListener('click', submitButtonFunction);
+submitButtonEl.addEventListener('click', selectAnswer);
 
 
 
