@@ -19,19 +19,19 @@ var score = 0;
 
 ///FUNCTIONS
 function init() { //clicking the start button starts the startQuiz function.
-  startButtonEl.addEventListener('click', startQuiz);
+  startButtonEl.addEventListener('click', startQuiz);  //clicking startButtonEl starts starQuiz function.
 };
  
-function startQuiz() {  //once startButtonEl is clicked...
-  console.log('Start Quiz button clicked');
+function startQuiz() {  //once startButtonEl nested in init() is clicked...
+  console.log('Start Quiz button clicked');  //it tests if startButtonEl works, then...
   startContainer.style.display = 'none';  //start-container div gets cleared...
   quizContainer.style.display = 'block';  //quiz-container div begins...
   timerFunction();  // and the timer starts in the backgroud...
-  displayQuestion();  //
+  displayQuestion();  // along with the displaying of questions.
   
 };
 
-function timerFunction() {
+function timerFunction() {  //this timer is called and nested inside startQuiz...
   var secondsRemaining = 10;
   var timer = setInterval(function() {
     if (secondsRemaining <= 0) {
