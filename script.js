@@ -1,4 +1,4 @@
-//DEPENDENCIES
+////DEPENDENCIES
 var startContainer = document.getElementById('start-container');
 var quizContainer = document.getElementById('quiz-container');
 var timerEl = document.getElementById('timer');
@@ -8,7 +8,7 @@ var answerOptionsEl = document.getElementById('answer-options');
 var submitButtonEl = document.getElementById('submit-answer');
 var resultEl = document.getElementById('result');
 
-//DATA
+////DATA
 var questions = [
   { question: "What is 2 + 2?", answers: ["3", "4", "5"], correct: "4" },
   { question: "What is the capital of France?", answers: ["Paris", "London", "Rome"], correct: "Paris" },
@@ -17,17 +17,17 @@ var questions = [
 var currentQuestionIndex = 0;
 var score = 0;
 
-//FUNCTIONS
-function init() {
+///FUNCTIONS
+function init() { //clicking the start button starts the startQuiz function.
   startButtonEl.addEventListener('click', startQuiz);
 };
  
-function startQuiz() {
+function startQuiz() {  //once startButtonEl is clicked...
   console.log('Start Quiz button clicked');
-  startContainer.style.display = 'none';
-  quizContainer.style.display = 'block';
-  timerFunction();
-  displayQuestion();
+  startContainer.style.display = 'none';  //start-container div gets cleared...
+  quizContainer.style.display = 'block';  //quiz-container div begins...
+  timerFunction();  // and the timer starts in the backgroud...
+  displayQuestion();  //
   
 };
 
@@ -87,8 +87,8 @@ function showResults() {
   resultEl.textContent = "Your score: " + score + "/" + questions.length
 }
 
-//USER INTERACTION
+////USER INTERACTION
 
 
-//INITIALIZATION
+////INITIALIZATION
 init();
