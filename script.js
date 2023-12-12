@@ -1,14 +1,20 @@
 //DEPENDENCIES
 
+
 var timerEl = document.getElementById('timer');
-var submitButtonEl = document.getElementById('submit');
+var startButtonEl = document.getElementById("start-quiz");
+var questionEl = document.getElementById('question');
+var answerOptionsEl = document.getElementById('answer-options');
+var submitButtonEl = document.getElementById('submit-answer');
+var resultEl = document.getElementById('result');
 
 
 //DATA
 
+  
 //FUNCTIONS
 function init() {
-  timerFunction();
+  
 };
 
 
@@ -26,13 +32,34 @@ function timerFunction() {
   };
 
 
-function submitButtonFunction() {
-  // Code for what happens when submit is clicked
-  console.log('Submit button clicked');
+function startButtonFunction() {
+  console.log('Start Quiz button clicked');
+  timerFunction();
 };
 
 
-// //USER INTERACTION
+function submitButtonFunction() {
+  // Code for what happens when submit is clicked
+  console.log('Submit button clicked');
+  
+};
+
+
+function displayQuestion() {
+
+  var questions = [
+    { question: "What is 2 + 2?", answers: ["3", "4", "5"], correct: "4" },
+    { question: "What is the capital of France?", answers: ["Paris", "London", "Rome"], correct: "Paris" },
+    { question: "Who wrote Hamlet?", answers: ["Shakespeare", "Dickens", "Chaucer"], correct: "Shakespeare" }
+  ];
+
+
+
+};
+
+
+//USER INTERACTION
+startButtonEl.addEventListener('click', startButtonFunction);
 submitButtonEl.addEventListener('click', submitButtonFunction);
 
 
