@@ -26,6 +26,7 @@ function startQuiz() {
   console.log('Start Quiz button clicked');
   startContainer.style.display = 'none';
   quizContainer.style.display = 'block';
+  timerFunction();
   displayQuestion();
   
 };
@@ -44,7 +45,11 @@ function timerFunction() {
 };
 
 function displayQuestion() {
-  
+  if (currentQuestion >= questions.length) {
+      clearInterval(timerEl);
+      showResults();
+      return;
+  }
   var currentQuestion = questions[currentQuestionIndex]
       questionEl.textContent = currentQuestion.question;
       answerOptionsEl.innerHTML = '';
@@ -53,7 +58,8 @@ function displayQuestion() {
             liEl.textContent = answer;
             liEl.addEventListener('click', selectAnswer);
             answerOptionsEl.appendChild(liEl);
-    });timerFunction();
+        });
+      
 };
 
 function selectAnswer(event) {
@@ -74,6 +80,7 @@ function selectAnswer(event) {
 };
 
 function showResults() {
+  clearInterval(timerEl);
   questionEl.style.display = 'none';
   answerOptionsEl.style.display = 'none';
   submitButtonEl.style.display = 'none';
