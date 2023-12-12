@@ -1,7 +1,7 @@
 //DEPENDENCIES
 var startContainer = document.getElementById('start-container');
 var quizContainer = document.getElementById('quiz-container');
-// var timerEl = document.getElementById('timer');
+var timerEl = document.getElementById('timer');
 var startButtonEl = document.getElementById("start-button");
 var questionEl = document.getElementById('question');
 var answerOptionsEl = document.getElementById('answer-options');
@@ -19,9 +19,7 @@ var score = 0;
 
 //FUNCTIONS
 function init() {
-  startQuiz();
-  
-  
+  startButtonEl.addEventListener('click', startQuiz);
 };
  
 function startQuiz() {
@@ -32,21 +30,21 @@ function startQuiz() {
   
 };
 
-// function timerFunction() {
-//   var secondsRemaining = 10;
-//   var timer = setInterval(function() {
-//     if (secondsRemaining <= 0) {
-//       clearInterval(timer);
-//       timerEl.textContent = "Time's up!";
-//       } else {
-//       timerEl.textContent = secondsRemaining + ' seconds remaining';
-//       secondsRemaining--;
-//       }
-//     }, 1000);
-// };
-
+function timerFunction() {
+  var secondsRemaining = 10;
+  var timer = setInterval(function() {
+    if (secondsRemaining <= 0) {
+      clearInterval(timer);
+      timerEl.textContent = "Time's up!";
+      } else {
+      timerEl.textContent = secondsRemaining + ' seconds remaining';
+      secondsRemaining--;
+      }
+    }, 1000);
+};
 
 function displayQuestion() {
+  
   var currentQuestion = questions[currentQuestionIndex]
       questionEl.textContent = currentQuestion.question;
       answerOptionsEl.innerHTML = '';
@@ -55,7 +53,7 @@ function displayQuestion() {
             liEl.textContent = answer;
             liEl.addEventListener('click', selectAnswer);
             answerOptionsEl.appendChild(liEl);
-    });
+    });timerFunction();
 };
 
 function selectAnswer(event) {
@@ -83,8 +81,7 @@ function showResults() {
 }
 
 //USER INTERACTION
- startButtonEl.addEventListener('click', startQuiz);
-submitButtonEl.addEventListener('click', selectAnswer);
+
 
 //INITIALIZATION
 init();
