@@ -1,6 +1,4 @@
 //DEPENDENCIES
-
-
 var timerEl = document.getElementById('timer');
 var startButtonEl = document.getElementById("start-quiz");
 var questionEl = document.getElementById('question');
@@ -10,8 +8,15 @@ var resultEl = document.getElementById('result');
 
 
 //DATA
+var questions = [
+  { question: "What is 2 + 2?", answers: ["3", "4", "5"], correct: "4" },
+  { question: "What is the capital of France?", answers: ["Paris", "London", "Rome"], correct: "Paris" },
+  { question: "Who wrote Hamlet?", answers: ["Shakespeare", "Dickens", "Chaucer"], correct: "Shakespeare" }
+];
+var currentQuestionIndex = 0;
+var score = 0;
 
-  
+
 //FUNCTIONS
 function init() {
   
@@ -46,12 +51,12 @@ function submitButtonFunction() {
 
 
 function displayQuestion() {
+  var currentQuestion = questions[currentQuestionIndex]
 
-  var questions = [
-    { question: "What is 2 + 2?", answers: ["3", "4", "5"], correct: "4" },
-    { question: "What is the capital of France?", answers: ["Paris", "London", "Rome"], correct: "Paris" },
-    { question: "Who wrote Hamlet?", answers: ["Shakespeare", "Dickens", "Chaucer"], correct: "Shakespeare" }
-  ];
+    questionEl.textContent = currentQuestion.question;
+    answerOptionsEl.innerHTML = '';
+    // currentQuestion.answers.forEach
+
 
 
 
