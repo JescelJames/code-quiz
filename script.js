@@ -1,6 +1,7 @@
 ////DEPENDENCIES
 var startContainerEl = document.getElementById('start-container');
 var quizContainerEl = document.getElementById('quiz-container');
+var resultContainerEl = document.getElementById('result-container');
 var timerEl = document.getElementById('timer');
 var startButtonEl = document.getElementById("start-button");
 var questionEl = document.getElementById('question');
@@ -38,6 +39,7 @@ function timerFunc() {  //this timer is called inside startQuiz function...
     if (secondsRemainingVar <= 0) {
       clearInterval(timerVar);
       timerEl.textContent = "Time's up!";
+      showResultsFunc();
       } else {
       timerEl.textContent = secondsRemainingVar + ' seconds remaining';
       secondsRemainingVar--;
@@ -65,16 +67,13 @@ function displayQuestionFunc() {  //this displays the questions
 };
 
 function selectAnswerFunc(eventParam) {  //This function handles the logic when the user selects an answer. 
-                                //the event parameter is triggered when user clicks on of the answer options.
-
+                                //the eventParam parameter is triggered when user clicks on of the answer options.
   var selectedAnswerVar = eventParam.target.textContent;  //extracts the text content of the HTML element the user clicks
   var correctAnswerVar = questionsObj[currentQuestionIndexVar].correct;  //gets the correct answer for the current question,
 
   if (selectedAnswerVar === correctAnswerVar) {
     scoreVar++;
-    
-    var pEl = document.createElement('p');
-
+        // var pEl = document.createElement('p');
   }
   currentQuestionIndexVar++;
   if (currentQuestionIndexVar < questionsObj.length) {
@@ -87,11 +86,19 @@ function selectAnswerFunc(eventParam) {  //This function handles the logic when 
 
 function showResultsFunc() {
   clearInterval(timerVar);
+  // quizContainerEl.style.display = 'none';
+  resultContainerEl.style.display = 'block';
+
   questionEl.style.display = 'none';
   answerOptionsEl.style.display = 'none';
   submitButtonEl.style.display = 'none';
   resultEl.textContent = "Your score: " + scoreVar + "/" + questionsObj.length
+
+
 }
+
+
+
 
 ////USER INTERACTION
 
