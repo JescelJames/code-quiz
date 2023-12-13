@@ -7,10 +7,16 @@ var quizContainerEl = document.getElementById('quiz-container');
 var timerEl = document.getElementById('timer');
 var questionEl = document.getElementById('question');
 var answerOptionsEl = document.getElementById('answer-options');
-
     //third <div='result-container'>
 var resultContainerEl = document.getElementById('result-container');
 var resultEl = document.getElementById('result');
+var formEl = document.getElementById('form');
+var userNameEl = document.getElementById('user-name');
+var submitButtonEl = document.getElementById('submit-button');
+    //fourth <div='high-score-container'>
+var highScoreContainerEl = document.getElementById('high-score-container');
+var submittedNameEl = document.getElementById('submitted-name');
+
 
 
 ///DATA
@@ -31,7 +37,7 @@ function initFunc() { //clicking the start button starts the startQuiz function.
 function startQuizFunc() {  //once startButtonEl inside init() is clicked...
   console.log('Start Quiz button clicked');  //it tests if startButtonEl works, then...
   startContainerEl.style.display = 'none';  //start-container div gets cleared...
-  quizContainerEl.style.display = 'block';  //quiz-container div begins. note: this is display: none in html.
+  quizContainerEl.style.display = 'block';  //quiz-container div begins. note: this is display:none in html.
   timerFunc();  // and the timer starts in the backgroud...
   displayQuestionFunc();  // along with the displaying of questions.
   
@@ -67,7 +73,6 @@ function displayQuestionFunc() {  //this displays the questions
             liEl.addEventListener('click', selectAnswerFunc);  //when an answer is clicked
             answerOptionsEl.appendChild(liEl);
         });
-      
 };
 
 function selectAnswerFunc(eventParam) {  //This function handles the logic when the user selects an answer. 
@@ -94,7 +99,7 @@ function showResultsFunc() {
   answerOptionsEl.style.display = 'none';
   resultContainerEl.style.display = 'block';
   
-  //create, build, place h2
+      //create, build, place h2
   var h2El = document.createElement('h2');
       h2El.textContent = 'All Done!';
       h2El.setAttribute('style', 'text-align: center;')
@@ -103,15 +108,28 @@ function showResultsFunc() {
   resultEl.setAttribute('style', 'text-align: center;')
   resultEl.textContent = "Your score: " + scoreVar + "/" + questionsObj.length
 
-  
+
 
 }
 
+function userNameFunc(eventParam) {
+  eventParam.preventDefault();
+  console.log('submit button has been clicked');
+  
+  startContainerEl.style.display = 'none';
+  quizContainerEl.style.display = 'none';
+  resultContainerEl.style.display = 'none';
+  highScoreContainerEl.style.display = 'block';
+
+  var submittedNameVar = userNameEl.value
+  submittedNameEl.textContent = submittedNameVar;
+  
+};
 
 
 
 ////USER INTERACTION
-
+submitButtonEl.addEventListener('click', userNameFunc);
 
 ////INITIALIZATION
 initFunc();
