@@ -58,19 +58,19 @@ function displayQuestionFunc() {  //this displays the questions
       currentQuestion.answers.forEach(function(answerParam) {
         var liEl = document.createElement('li');
             liEl.textContent = answerParam;
-            liEl.addEventListener('click', selectAnswer);  //when an answer is clicked
+            liEl.addEventListener('click', selectAnswerFunc);  //when an answer is clicked
             answerOptionsEl.appendChild(liEl);
         });
       
 };
 
-function selectAnswer(eventParam) {  //This function handles the logic when the user selects an answer. 
+function selectAnswerFunc(eventParam) {  //This function handles the logic when the user selects an answer. 
                                 //the event parameter is triggered when user clicks on of the answer options.
 
-  var selectedAnswer = eventParam.target.textContent;  //extracts the text content of the HTML element the user clicks
-  var correctAnswer = questionsObj[currentQuestionIndexVar].correct;  //gets the correct answer for the current question,
+  var selectedAnswerVar = eventParam.target.textContent;  //extracts the text content of the HTML element the user clicks
+  var correctAnswerVar = questionsObj[currentQuestionIndexVar].correct;  //gets the correct answer for the current question,
 
-  if (selectedAnswer === correctAnswer) {
+  if (selectedAnswerVar === correctAnswerVar) {
     scoreVar++;
     
     var pEl = document.createElement('p');
