@@ -18,7 +18,6 @@ var highScoreContainerEl = document.getElementById('high-score-container');
 var submittedNameEl = document.getElementById('submitted-name');
 
 
-
 ///DATA
 var questionsObj = [
   { question: "What is 2 + 2?", answers: ["3", "4", "5"], correct: "4" },
@@ -40,7 +39,6 @@ function startQuizFunc() {  //once startButtonEl inside init() is clicked...
   quizContainerEl.style.display = 'block';  //quiz-container div begins. note: this is display:none in html.
   timerFunc();  // and the timer starts in the backgroud...
   displayQuestionFunc();  // along with the displaying of questions.
-  
 };
 
 function timerFunc() {  //this timer is called inside startQuiz function...
@@ -107,9 +105,6 @@ function showResultsFunc() {
         
   resultEl.setAttribute('style', 'text-align: center;')
   resultEl.textContent = "Your score: " + scoreVar + "/" + questionsObj.length
-
-
-
 }
 
 function userNameFunc(eventParam) {
@@ -121,15 +116,19 @@ function userNameFunc(eventParam) {
   resultContainerEl.style.display = 'none';
   highScoreContainerEl.style.display = 'block';
 
-  var submittedNameVar = userNameEl.value
-  submittedNameEl.textContent = submittedNameVar;
-  
-};
+  //create, build, place
+  var olEl = document.createElement('ol');
+      olEl.textContent = userNameEl.value;
+      // highScoreContainerEl.submittedNameEl.appendChild(olEl);
 
+  var submittedNameVar = userNameEl.value
+      submittedNameEl.textContent = submittedNameVar;
+};
 
 
 ////USER INTERACTION
 submitButtonEl.addEventListener('click', userNameFunc);
+
 
 ////INITIALIZATION
 initFunc();
