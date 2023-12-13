@@ -55,25 +55,24 @@ function displayQuestionFunc() {  //this displays the questions
       questionEl.textContent = currentQuestion.question;
       answerOptionsEl.innerHTML = '';
 
-      currentQuestion.answers.forEach(function(answer) {
+      currentQuestion.answers.forEach(function(answerParam) {
         var liEl = document.createElement('li');
-            liEl.textContent = answer;
+            liEl.textContent = answerParam;
             liEl.addEventListener('click', selectAnswer);  //when an answer is clicked
             answerOptionsEl.appendChild(liEl);
         });
       
 };
 
-function selectAnswer(event) {  //this handles the logic when the user selects an answer. 
+function selectAnswer(eventParam) {  //This function handles the logic when the user selects an answer. 
                                 //the event parameter is triggered when user clicks on of the answer options.
 
-  var selectedAnswer = event.target.textContent;  //extracts the text content of the HTML element the user clicks
-                                                  //and stores it in a variable. 
-
+  var selectedAnswer = eventParam.target.textContent;  //extracts the text content of the HTML element the user clicks
   var correctAnswer = questionsObj[currentQuestionIndexVar].correct;  //gets the correct answer for the current question,
 
   if (selectedAnswer === correctAnswer) {
     scoreVar++;
+    
     var pEl = document.createElement('p');
 
   }
