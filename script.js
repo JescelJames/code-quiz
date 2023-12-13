@@ -1,14 +1,14 @@
 ///DEPENDENCIES
-    //first <div>
+    //first <div='start-container'>
 var startContainerEl = document.getElementById('start-container');
 var startButtonEl = document.getElementById("start-button");
-    //second <div>
+    //second <div='quiz-container'>
 var quizContainerEl = document.getElementById('quiz-container');
 var timerEl = document.getElementById('timer');
 var questionEl = document.getElementById('question');
 var answerOptionsEl = document.getElementById('answer-options');
-var submitButtonEl = document.getElementById('submit-answer');
-    //third <div>
+
+    //third <div='result-container'>
 var resultContainerEl = document.getElementById('result-container');
 var resultEl = document.getElementById('result');
 
@@ -31,7 +31,7 @@ function initFunc() { //clicking the start button starts the startQuiz function.
 function startQuizFunc() {  //once startButtonEl inside init() is clicked...
   console.log('Start Quiz button clicked');  //it tests if startButtonEl works, then...
   startContainerEl.style.display = 'none';  //start-container div gets cleared...
-  quizContainerEl.style.display = 'block';  //quiz-container div begins...
+  quizContainerEl.style.display = 'block';  //quiz-container div begins. note: this is display: none in html.
   timerFunc();  // and the timer starts in the backgroud...
   displayQuestionFunc();  // along with the displaying of questions.
   
@@ -90,20 +90,20 @@ function selectAnswerFunc(eventParam) {  //This function handles the logic when 
 
 function showResultsFunc() {
   clearInterval(timerVar);
-  // quizContainerEl.style.display = 'none';
-  resultContainerEl.style.display = 'block';
   questionEl.style.display = 'none';
   answerOptionsEl.style.display = 'none';
-  submitButtonEl.style.display = 'none';
-    //create, build, place h2
-    var h2El = document.createElement('h2');
-        h2El.textContent = 'All Done!';
-        h2El.setAttribute('style', "text-align: center;")
-        resultContainerEl.appendChild(h2El);
-
-
+  resultContainerEl.style.display = 'block';
+  
+  //create, build, place h2
+  var h2El = document.createElement('h2');
+      h2El.textContent = 'All Done!';
+      h2El.setAttribute('style', 'text-align: center;')
+      resultContainerEl.appendChild(h2El);
+        
+  resultEl.setAttribute('style', 'text-align: center;')
   resultEl.textContent = "Your score: " + scoreVar + "/" + questionsObj.length
 
+  
 
 }
 
