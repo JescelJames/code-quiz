@@ -117,9 +117,9 @@ function userNameFunc(eventParam) {
   highScoreContainerEl.style.display = 'block';
 
   //create, build, place
-  var olEl = document.createElement('ol');
-      olEl.textContent = userNameEl.value;
-      // highScoreContainerEl.submittedNameEl.appendChild(olEl);
+  // var olEl = document.createElement('ol');
+  //     olEl.textContent = userNameEl.value;
+  //     submittedNameEl.appendChild(olEl);
 
   var submittedNameVar = userNameEl.value
       submittedNameEl.textContent = submittedNameVar;
