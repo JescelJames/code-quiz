@@ -138,7 +138,7 @@ function renderScores() {
       return b.score - a.score;
       }); 
 
-  // submittedNameEl.innerHTML = ''; // Clear existing content
+      submittedNameEl.innerHTML = ''; // Clear existing content
   
       var olEl = document.createElement('ol'); // Create 
 
