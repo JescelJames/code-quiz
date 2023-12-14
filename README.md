@@ -25,10 +25,7 @@
 
 ## Code Description
 
-The HTML and CSS in this code was prebuilt.  I made most of my updates and changes in the .js file. 
-
-
-## Credits
+Utilized large percentage of JavaScript for this application. 
 
 
 
