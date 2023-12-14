@@ -115,15 +115,26 @@ function userNameFunc(eventParam) {
   quizContainerEl.style.display = 'none';
   resultContainerEl.style.display = 'none';
   highScoreContainerEl.style.display = 'block';
+    
+    var submittedNameVar = userNameEl.value
+    // submittedNameEl.textContent = submittedNameVar
+  
+    localStorage.setItem("user-name", submittedNameVar);
+    renderName();
 
-  //create, build, place
-  // var olEl = document.createElement('ol');
-  //     olEl.textContent = userNameEl.value;
-  //     submittedNameEl.appendChild(olEl);
-
-  var submittedNameVar = userNameEl.value
-      submittedNameEl.textContent = submittedNameVar;
 };
+ 
+function renderName() {
+  var submittedNameVar = localStorage.getItem('user-name'); 
+};
+// function renderRegisteredName() {
+//     submittedNameEl.textContent = submittedNameVar;
+//     var userName = localStorage.getItem("user-name");
+ 
+
+// }
+
+
 
 
 ////USER INTERACTION

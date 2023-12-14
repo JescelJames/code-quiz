@@ -1,4 +1,4 @@
-# My Fourth Challenge: Create a timed Quiz using Web APIs. 
+# My Fourth Challenge: Create a Timed Quiz using Web APIs. 
 
 ## Description
 
