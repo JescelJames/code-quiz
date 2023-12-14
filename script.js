@@ -18,6 +18,7 @@ var highScoreContainerEl = document.getElementById('high-score-container');
 var submittedNameEl = document.getElementById('submitted-name');
 var clearStorageButtonEl = document.getElementById('clear-storage-button');
 
+
 ///DATA
 var questionsObj = [
   { question: "What is 2 + 2?", answers: ["3", "4", "5"], correct: "4" },
@@ -27,6 +28,8 @@ var questionsObj = [
 var currentQuestionIndexVar = 0;
 var scoreVar = 0;
 var timerVar;
+// var secondsRemainingVar;
+var secondsRemainingVar = 20;
 
 ///FUNCTIONS
 function initFunc() { //clicking the start button starts the startQuiz function.
@@ -43,12 +46,14 @@ function startQuizFunc() {  //once startButtonEl inside init() is clicked...
 };
 
 function timerFunc() {  //this timer is called inside startQuiz function...
-  var secondsRemainingVar = 10;
-      timerVar = setInterval(function() {
+  // var secondsRemainingVar = 20;
+   
+  timerVar = setInterval(function() {
     if (secondsRemainingVar <= 0) {
       clearInterval(timerVar);
       timerEl.textContent = "Time's up!";
       showResultsFunc();
+      return;
       } else {
       timerEl.textContent = secondsRemainingVar + ' seconds remaining';
       secondsRemainingVar--;
@@ -74,15 +79,26 @@ function displayQuestionFunc() {  //this displays the questions
         });
 };
 
-function selectAnswerFunc(eventParam) {  //This function handles the logic when the user selects an answer. 
-                                //the eventParam parameter is triggered when user clicks on of the answer options.
+function selectAnswerFunc(eventParam) { //the eventParam parameter is triggered when user clicks on of the answer options. 
+                                
   var selectedAnswerVar = eventParam.target.textContent;  //extracts the text content of the HTML element the user clicks
   var correctAnswerVar = questionsObj[currentQuestionIndexVar].correct;  //gets the correct answer for the current question,
 
   if (selectedAnswerVar === correctAnswerVar) {
     scoreVar++;
-        // var pEl = document.createElement('p');
   }
+  
+  if (selectedAnswerVar !== correctAnswerVar) {
+    secondsRemainingVar -= 5; 
+    timerEl.textContent = secondsRemainingVar + ' seconds remaining';
+      if (secondsRemainingVar <= 0) {
+        clearInterval(timerVar);
+        timerEl.textContent = "Time's up!";
+        showResultsFunc();
+        return;
+      }
+  }
+
   currentQuestionIndexVar++;
   if (currentQuestionIndexVar < questionsObj.length) {
     displayQuestionFunc();
