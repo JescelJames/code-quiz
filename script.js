@@ -21,8 +21,8 @@ var clearStorageButtonEl = document.getElementById('clear-storage-button');
 
 ///DATA
 var questionsObj = [
-  { question: "What is 2 + 2?", answers: ["3", "4", "5"], correct: "4" },
-  { question: "What is the capital of France?", answers: ["Paris", "London", "Rome"], correct: "Paris" },
+  { question: "What will be the output of the following JavaScript code: console.log(typeof typeof 1);", answers: ["string", "number", "object", "undefined"], correct: "string" },
+  { question: "Which HTML tag is used to define an internal style sheet?", answers: ["<style>", "<link>", "<script>", "<css>"], correct: "<style>" },
   { question: "Who wrote Hamlet?", answers: ["Shakespeare", "Dickens", "Chaucer"], correct: "Shakespeare" }
 ];
 var currentQuestionIndexVar = 0;
