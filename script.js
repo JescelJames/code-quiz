@@ -31,6 +31,7 @@ var timerVar;
 ///FUNCTIONS
 function initFunc() { //clicking the start button starts the startQuiz function.
   startButtonEl.addEventListener('click', startQuizFunc);  //clicking startButtonEl starts starQuiz function.
+  renderScores();
 };
  
 function startQuizFunc() {  //once startButtonEl inside init() is clicked...
@@ -116,23 +117,38 @@ function userNameFunc(eventParam) {
   resultContainerEl.style.display = 'none';
   highScoreContainerEl.style.display = 'block';
     
-    var submittedNameVar = userNameEl.value
-    // submittedNameEl.textContent = submittedNameVar
+    var submittedName = userNameEl.value
+    var userScore = scoreVar;
+
+
+    var existingNames = JSON.parse(localStorage.getItem("user-names")) || [];
+    existingNames.push(submittedName);
   
-    localStorage.setItem("user-name", submittedNameVar);
-    renderName();
+    var existingScores = JSON.parse(localStorage.getItem("user-scores")) || [];
+    existingScores.push({ name: submittedName, score: userScore });
+    localStorage.setItem("user-scores", JSON.stringify(existingScores));
+    
+    renderScores();
 
 };
  
-function renderName() {
-  var submittedNameVar = localStorage.getItem('user-name'); 
-};
-// function renderRegisteredName() {
-//     submittedNameEl.textContent = submittedNameVar;
-//     var userName = localStorage.getItem("user-name");
- 
+function renderScores() {
+  var storedScoresVar = JSON.parse(localStorage.getItem('user-scores')) || [];
+  storedScores.sort(function(a, b) {
+    return b.score - a.score;
+}); // Sort by score in descending order
 
-// }
+  submittedNameEl.innerHTML = ''; // Clear existing content
+  var olEl = document.createElement('ol'); // Create an ordered list
+
+  storedScoresVar.forEach(function(user) {
+      var liEl = document.createElement('li');
+      liEl.textContent = user.name + ' - Score: ' + user.score;
+      olEl.appendChild(liEl);
+  });
+
+  submittedNameEl.appendChild(olEl); // Append the list to the container
+}
 
 
 
