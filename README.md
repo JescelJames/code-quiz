@@ -8,7 +8,7 @@
 
 
 
-- Challenge Link: h
+- Challenge Link: https://jesceljames.github.io/code-quiz/
 
 - My motivation:  To build a small quiz with a timer that tracks the user's grade
 - Why I took this challenge: This challenge requires using a good amount of script to create a working app.
