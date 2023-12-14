@@ -134,18 +134,20 @@ function userNameFunc(eventParam) {
  
 function renderScores() {
   var storedScoresVar = JSON.parse(localStorage.getItem('user-scores')) || [];
-  storedScores.sort(function(a, b) {
-    return b.score - a.score;
-}); // Sort by score in descending order
+      storedScoresVar.sort(function(a, b) {// Sort by score in descending order
+      return b.score - a.score;
+      }); 
 
   submittedNameEl.innerHTML = ''; // Clear existing content
+  
+  
   var olEl = document.createElement('ol'); // Create an ordered list
 
-  storedScoresVar.forEach(function(user) {
+      storedScoresVar.forEach(function(user) {
       var liEl = document.createElement('li');
       liEl.textContent = user.name + ' - Score: ' + user.score;
       olEl.appendChild(liEl);
-  });
+      });
 
   submittedNameEl.appendChild(olEl); // Append the list to the container
 }
