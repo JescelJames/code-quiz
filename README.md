@@ -7,6 +7,7 @@
 ### This is my first Web API challenge: To create a time quiz
 
 
+![Code Quiz](https://github.com/JescelJames/code-quiz/assets/105643185/5ae49537-933f-4ecb-be67-ad3811051e2f)
 
 - Challenge Link: https://jesceljames.github.io/code-quiz/
 
