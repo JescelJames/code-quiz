@@ -23,7 +23,7 @@ var clearStorageButtonEl = document.getElementById('clear-storage-button');
 var questionsObj = [
   { question: "What will be the output of the following JavaScript code: console.log(typeof typeof 1);", answers: ["string", "number", "object", "undefined"], correct: "string" },
   { question: "Which HTML tag is used to define an internal style sheet?", answers: ["<style>", "<link>", "<script>", "<css>"], correct: "<style>" },
-  { question: "What does the CSS display: flex; property do?", answers: ["It makes the element float.", " It enables flexible box layout.", "It hides the element.", " It makes the element inline."], correct: "It enables flexible box layout." },
+  { question: "What does the CSS display: flex; property do?", answers: ["It makes the element float.", "It enables flexible box layout.", "It hides the element.", "It makes the element inline."], correct: "It enables flexible box layout." },
   { question: "Which method in the Fetch API is used to parse the response of a fetch request as JSON?", answers: [".json()", ".parseJson()", ".getText()", ".parse()"], correct: ".json()" }
 ];
 var currentQuestionIndexVar = 0;
