@@ -16,7 +16,7 @@ var submitButtonEl = document.getElementById('submit-button');
     //fourth <div='high-score-container'>
 var highScoreContainerEl = document.getElementById('high-score-container');
 var submittedNameEl = document.getElementById('submitted-name');
-
+var clearStorageButtonEl = document.getElementById('clear-storage-button');
 
 ///DATA
 var questionsObj = [
@@ -106,7 +106,7 @@ function showResultsFunc() {
         
   resultEl.setAttribute('style', 'text-align: center;')
   resultEl.textContent = "Your score: " + scoreVar + "/" + questionsObj.length
-}
+};
 
 function userNameFunc(eventParam) {
   eventParam.preventDefault();
@@ -138,26 +138,30 @@ function renderScores() {
       return b.score - a.score;
       }); 
 
-  submittedNameEl.innerHTML = ''; // Clear existing content
+  // submittedNameEl.innerHTML = ''; // Clear existing content
   
-  
-  var olEl = document.createElement('ol'); // Create an ordered list
+      var olEl = document.createElement('ol'); // Create 
 
       storedScoresVar.forEach(function(user) {
-      var liEl = document.createElement('li');
-      liEl.textContent = user.name + ' - Score: ' + user.score;
-      olEl.appendChild(liEl);
-      });
+        var liEl = document.createElement('li');
+            liEl.textContent = user.name + ' - Score: ' + user.score;
+      
+          olEl.appendChild(liEl); //place
+        });
 
-  submittedNameEl.appendChild(olEl); // Append the list to the container
-}
+  submittedNameEl.appendChild(olEl); // place
+};
 
+function clearLocalStorage() {
+  localStorage.clear();
+  renderScores(); // Update the display after clearing the storage
+};
 
 
 
 ////USER INTERACTION
 submitButtonEl.addEventListener('click', userNameFunc);
-
+clearStorageButtonEl.addEventListener('click', clearLocalStorage);
 
 ////INITIALIZATION
 initFunc();
