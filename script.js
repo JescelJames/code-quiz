@@ -46,9 +46,9 @@ function startQuizFunc() {  //once startButtonEl inside init() is clicked...
 };
 
 function timerFunc() {  //this timer is called inside startQuiz function...
-  // var secondsRemainingVar = 20;
-   
+    
   timerVar = setInterval(function() {
+    console.log("Timer tick, Seconds Remaining: ", secondsRemainingVar); // Log each tick for ts
     if (secondsRemainingVar <= 0) {
       clearInterval(timerVar);
       timerEl.textContent = "Time's up!";
@@ -83,9 +83,11 @@ function selectAnswerFunc(eventParam) { //the eventParam parameter is triggered 
                                 
   var selectedAnswerVar = eventParam.target.textContent;  //extracts the text content of the HTML element the user clicks
   var correctAnswerVar = questionsObj[currentQuestionIndexVar].correct;  //gets the correct answer for the current question,
+  console.log("Selected Answer: ", selectedAnswerVar); // Log the selected answer for ts
 
   if (selectedAnswerVar === correctAnswerVar) {
     scoreVar++;
+    console.log("Correct Answer. Score: ", scoreVar); // Log correct answer
   }
   
   if (selectedAnswerVar !== correctAnswerVar) {
@@ -110,6 +112,7 @@ function selectAnswerFunc(eventParam) { //the eventParam parameter is triggered 
 
 function showResultsFunc() {
   clearInterval(timerVar);
+  console.log("Quiz ended. Final Score: ", scoreVar); // Log the end of the quiz and final score for ts
   questionEl.style.display = 'none';
   answerOptionsEl.style.display = 'none';
   resultContainerEl.style.display = 'block';
